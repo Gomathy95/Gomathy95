@@ -90,7 +90,7 @@ var w = 550, h = 300, margin = {top: 30, right: 15, bottom: 40, left: 45};
         .text("Station name");
 
     function updateChartWithWeather(lat, lon) {
-        var apiKey = "65074012804cee478133b2d1ef3e721b";
+        var apiKey = window.CONFIG && window.CONFIG.OWM_KEY;
         var url = `https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&cnt=20&units=metric&appid=${apiKey}`;
 
         d3.json(url, function(error, data) {
@@ -159,5 +159,6 @@ var w = 550, h = 300, margin = {top: 30, right: 15, bottom: 40, left: 45};
             console.error("Geolocation is not supported by this browser.");
         }
     }
+
 
     d3.select("#updateweather").on("click", getLocationAndUpdateChart);
