@@ -2,24 +2,21 @@ const Google_Key = "AIzaSyA-8CTDisLXo_SLzKRQMv7ds4porl_cq9Q";
 const OWM_Key = "65074012804cee478133b2d1ef3e721b";
 
 function fetchWeatherData() {
-    const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=${Google_Key}`;
-    $.post(url, function (response) {
-        const mylat = response.location.lat;
-        const mylon = response.location.lng;
+  if (!navigator.geolocation) { console.error("Geolocation not supported"); return; }
+  const OWM_Key = (window.CONFIG && window.CONFIG.OWM_KEY) || OWM_Key; // fallback if you kept the const
 
-        const owm_url = `https://api.openweathermap.org/data/2.5/find?lat=${mylat}&lon=${mylon}&appid=${OWM_Key}&cnt=20&units=metric`;
-        $.getJSON(owm_url, function (data) {
-            const stations = data.list.slice(0, 5);
-            
-            
-            const labels = stations.map(station => 
-                station.name.length > 10 ? station.name.substring(0, 10) + "..." : station.name
-            );
-            const temperatures = stations.map(station => station.main.temp);
+  navigator.geolocation.getCurrentPosition(function(pos) {
+    const mylat = pos.coords.latitude;
+    const mylon = pos.coords.longitude;
+    const url = `https://api.openweathermap.org/data/2.5/find?lat=${mylat}&lon=${mylon}&appid=${OWM_Key}&cnt=20&units=metric`;
 
-            renderChart(labels, temperatures);
-        });
-    });
+    $.getJSON(url, function (data) {
+      const stations = data.list.slice(0, 5);
+      const labels = stations.map(s => s.name.length > 10 ? s.name.substring(0,10)+"..." : s.name);
+      const temperatures = stations.map(s => s.main.temp);
+      renderChart(labels, temperatures);
+    }).fail(err => console.error("OWM fetch error:", err));
+  }, err => console.error("Geolocation error:", err));
 }
 
 function renderChart(labels, data) {
@@ -73,3 +70,4 @@ function renderChart(labels, data) {
 }
 
 $(document).ready(fetchWeatherData);
+
