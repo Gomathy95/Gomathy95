@@ -162,5 +162,6 @@ var w = 550, h = 300, margin = {top: 30, right: 15, bottom: 40, left: 45};
 
 
     d3.select("#updateweather").on("click", getLocationAndUpdateChart);
-getLocationAndUpdateChart();
+
+
 
