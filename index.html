@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	 <!-- Leaflet CSS -->
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+	 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+ 
+	 <!-- MarkerCluster CSS & JS -->
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+	 <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+     <script>
+		$(document).on("mobileinit", function () {
+			$.mobile.loading().hide();
+			$.mobile.loadingMessage = false;
+		});
+	</script>
+	
+	 <!-- jQuery -->
+     
+	 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	 
+    <!-- D3 -->
+     <script src="https://d3js.org/d3.v3.min.js"></script>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
+
+	<link href="css/app.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">AdminKit</span>
+        </a>
+
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Pages
+					</li>
+
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="index.html">
+              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+            </a>
+					</li>
+
+				
+			</div>
+		</nav>
+
+		<div class="main">
+			
+
+			<main class="content">
+				<div class="container-fluid p-0">
+
+					<h1 class="h3 mb-3"><strong>Analytics Dashboard</strong> </h1>
+
+					<div class="row">
+						<div class="col-xl-6 col-xxl-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Air Quality Clustering: Nearby AQI Levels & Locations</h5>
+								</div>
+								<div class="card-body py-3">
+									<div id="mapid" class="chart-lg">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-6 col-xxl-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Real-Time Weather Data from Nearby Stations</h5>
+								</div>
+								<div class="card-body py-3">
+									<div id ="tempChart" class="chart chart-lg">
+										<p id ="updateweather">Click here to fetch Local Weather data!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xl-6 col-xxl-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">Live Weather Data - Top 5 Locations</h5>
+								</div>
+								<div class="card-body py-3">
+									<div  class="chart-lg">
+									<canvas id="weatherChart"></canvas>	
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-6 col-xxl-6">
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+
+									<h5 class="card-title mb-0">AQI Sensor Locations</h5>
+								</div>
+								<div class="card-body py-3">
+									<div id="map" class="chart-lg">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</main>
+                    </div>
+				</div>
+			</footer>
+		</div>
+	</div>
+    <script src="js/clustering.js"></script>
+	<script src="js/leafletaqi.js"></script>
+	<script src="js/Barchartweather.js"></script>
+	<script src="js/d3.js"></script>
+</body>
+</html>
